@@ -1,0 +1,51 @@
+### Create
+POST http://localhost:8000/user/create
+Content-Type: application/json
+
+{
+    "fullName": "Lê Duy Lam",
+    "birthday": "13/02/2000",
+    "gender": "male",
+    "email": "duylam.dev@icloud.com",
+    "phone": "0386930585",
+    "address": "Trà Vinh",
+    "userName": "testUser"
+}
+
+### Read One
+GET http://localhost:8000/user/readOne
+Content-Type: application/json
+
+{
+    "userName": "testUser"
+}
+
+### Read All
+GET http://localhost:8000/user/readAll
+Content-Type: application/json
+
+### Update
+POST http://localhost:8000/user/update
+Content-Type: application/json
+
+{
+    "fullName": "Lê Duy Lam",
+    "birthday": "13/02/2000",
+    "gender": "male",
+    "email": "duylam.dev@icloud.com",
+    "phone": "0386930585",
+    "address": "Trà Vinh",
+    "userName": "testUser"
+}
+
+### Delete One
+POST http://localhost:8000/user/deleteOne
+Content-Type: application/json
+
+{
+    "userName": "testUser"
+}
+
+### Delete All
+POST http://localhost:8000/user/deleteAll
+Content-Type: application/json

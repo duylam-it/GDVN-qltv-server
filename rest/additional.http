@@ -1,0 +1,41 @@
+### Create
+POST http://localhost:8000/additional/create
+Content-Type: application/json
+
+{
+    "name": "additional 3",
+    "description": "Create a new additional"
+}
+
+### Read One
+GET http://localhost:8000/additional/readOne
+Content-Type: application/json
+
+{
+    "name": "additional 1"
+}
+
+### Read All
+GET http://localhost:8000/additional/readAll
+Content-Type: application/json
+
+### Update
+POST http://localhost:8000/additional/update
+Content-Type: application/json
+
+{
+    "name": "additional 1",
+    "description": "update"
+}
+
+### Delete One
+POST http://localhost:8000/additional/deleteOne
+Content-Type: application/json
+
+{
+    "name": "additional 1"
+}
+
+### Delete All
+POST http://localhost:8000/additional/deleteAll
+Content-Type: application/json

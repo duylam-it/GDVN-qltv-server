@@ -1,0 +1,41 @@
+### Create
+POST http://localhost:8000/category/create
+Content-Type: application/json
+
+{
+    "name": "category 1",
+    "description": "Create a new category"
+}
+
+### Read One
+GET http://localhost:8000/category/readOne
+Content-Type: application/json
+
+{
+    "name": "create"
+}
+
+### Read All
+GET http://localhost:8000/category/readAll
+Content-Type: application/json
+
+### Update
+POST http://localhost:8000/category/update
+Content-Type: application/json
+
+{
+    "name": "create",
+    "description": "update"
+}
+
+### Delete One
+POST http://localhost:8000/category/deleteOne
+Content-Type: application/json
+
+{
+    "name": "create"
+}
+
+### Delete All
+POST http://localhost:8000/category/deleteAll
+Content-Type: application/json

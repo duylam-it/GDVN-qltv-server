@@ -1,0 +1,48 @@
+### Create
+POST http://localhost:8000/borrow/create
+Content-Type: application/json
+
+{
+    "bookCode": "book 1",
+    "userName": "testUser",
+    "from": "7/7/2022",
+    "to": "9/7/2022",
+    "status": "Chưa đến hạn"
+}
+
+### Read One
+GET http://localhost:8000/borrow/readOne
+Content-Type: application/json
+
+{
+    "_id": "62c7d9458034c54eb902554e"
+}
+
+### Read All
+GET http://localhost:8000/borrow/readAll
+Content-Type: application/json
+
+### Update
+POST http://localhost:8000/borrow/update
+Content-Type: application/json
+
+{
+    "_id": "62c7d9458034c54eb902554e",
+    "bookCode": "book 1",
+    "userName": "testUser",
+    "from": "7/7/2022",
+    "to": "9/7/2022",
+    "status": "Chưa đến hạn"
+}
+
+### Delete One
+POST http://localhost:8000/borrow/deleteOne
+Content-Type: application/json
+
+{
+    "_id": "62c7d9458034c54eb902554e"
+}
+
+### Delete All
+POST http://localhost:8000/borrow/deleteAll
+Content-Type: application/json

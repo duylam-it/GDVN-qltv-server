@@ -1,0 +1,32 @@
+### Set Option
+POST http://localhost:8000/option/setOption
+Content-Type: application/json
+
+{
+    "key": "test10",
+    "value": "value1"
+}
+
+### Get Option
+GET http://localhost:8000/option/getOption
+Content-Type: application/json
+
+{
+    "key": "test"
+}
+
+### Get All Option
+GET http://localhost:8000/option/getAll
+Content-Type: application/json
+
+### Delete Option
+POST http://localhost:8000/option/deleteOption
+Content-Type: application/json
+
+{
+    "key": "test"
+}
+
+### Delete All
+POST http://localhost:8000/option/deleteAll
+Content-Type: application/json

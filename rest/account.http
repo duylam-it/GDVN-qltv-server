@@ -1,0 +1,44 @@
+### Create
+POST http://localhost:8000/account/create
+Content-Type: application/json
+
+{
+    "userName": "testUser",
+    "password": "testPassword",
+    "permissions": "all"
+}
+
+### Read All
+GET http://localhost:8000/account/readAll
+Content-Type: application/json
+
+### Update Password
+POST http://localhost:8000/account/updatePassword
+Content-Type: application/json
+
+{
+    "userName": "testUser",
+    "oldPassword": "dfgdfgdfg",
+    "newPassword": "testPassword"
+}
+
+### Update Permissions
+POST http://localhost:8000/account/updatePermissions
+Content-Type: application/json
+
+{
+    "userName": "testUser",
+    "permissions": "all"
+}
+
+### Delete One
+POST http://localhost:8000/account/deleteOne
+Content-Type: application/json
+
+{
+    "userName": "testUser"
+}
+
+### Delete All
+POST http://localhost:8000/account/deleteAll
+Content-Type: application/json

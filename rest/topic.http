@@ -1,0 +1,41 @@
+### Create
+POST http://localhost:8000/topic/create
+Content-Type: application/json
+
+{
+    "name": "topic 1",
+    "description": "Create a new topic"
+}
+
+### Read One
+GET http://localhost:8000/topic/readOne
+Content-Type: application/json
+
+{
+    "name": "create"
+}
+
+### Read All
+GET http://localhost:8000/topic/readAll
+Content-Type: application/json
+
+### Update
+POST http://localhost:8000/topic/update
+Content-Type: application/json
+
+{
+    "name": "create",
+    "description": "update"
+}
+
+### Delete One
+POST http://localhost:8000/topic/deleteOne
+Content-Type: application/json
+
+{
+    "name": "create"
+}
+
+### Delete All
+POST http://localhost:8000/topic/deleteAll
+Content-Type: application/json
