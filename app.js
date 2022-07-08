@@ -14,8 +14,8 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 // Logger
-import log from 'morgan';
-app.use(log('dev'));
+// import log from 'morgan';
+// app.use(log('dev'));
 
 // Setup Cookie Parser
 app.use(cookieParser());
