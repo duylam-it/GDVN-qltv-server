@@ -1,22 +1,97 @@
-import Account from '../model/Account.js';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import User from '../model/User.js';
 import { random } from '../utils/random.js';
 
-export async function create(req, res) {
-  const { userName, ...data } = req.body;
-  const acc = await Account.findOne({ userName });
-  if (!acc) throw new Error(`Account ${userName} not found`);
+const encodedToken = (sub, exp, secret) => {
+  return jwt.sign(
+    {
+      iss: 'Duy Lam',
+      iat: new Date().getTime(),
+      exp,
+      sub
+    },
+    secret
+  );
+};
+
+export async function signUp(req, res) {
+  const { userName, password, ...data } = req.body;
   let user = await User.findOne({ userName });
-  if (user) throw new Error(`User ${userName} already exists`);
+  if (user) throw new Error('userName is not available');
+  const salt = await bcrypt.genSalt(10);
+  const hashedPass = await bcrypt.hash(password, salt);
   user = await new User({
     userName,
+    password: hashedPass,
     otp: random(999999),
     ...data
   }).save();
+  // eslint-disable-next-line no-unused-vars
+  const { password: _password, ...dataNoPasswords } = user.toJSON();
 
   res.json({
-    message: 'Success',
-    data: user
+    success: true,
+    data: dataNoPasswords
+  });
+}
+
+export async function signIn(req, res) {
+  // eslint-disable-next-line no-unused-vars
+  const { _id: id, password, ...data } = await req.user.toJSON();
+  const accessToken = encodedToken(
+    id,
+    new Date().setHours(new Date().getHours() + 1),
+    process.env.ACCESS_TOKEN_SECRET
+  );
+  const refreshToken = encodedToken(
+    id,
+    new Date().setDate(new Date().getDate() + 3),
+    process.env.REFRESH_TOKEN_SECRET
+  );
+
+  res.json({
+    success: true,
+    data: {
+      accessToken,
+      refreshToken,
+      user: data
+    }
+  });
+}
+
+export async function verify(req, res) {
+  // eslint-disable-next-line no-unused-vars
+  const { password, ...data } = await req.user.toJSON();
+
+  res.json({
+    success: true,
+    data
+  });
+}
+
+export async function refreshToken(req, res) {
+  // eslint-disable-next-line no-unused-vars
+  const { _id: id, password, ...data } = await req.user.toJSON();
+  const accessToken = encodedToken(
+    id,
+    new Date().setHours(new Date().getHours() + 1),
+    process.env.ACCESS_TOKEN_SECRET
+  );
+
+  res.json({
+    success: true,
+    data: {
+      accessToken,
+      user: data
+    }
+  });
+}
+
+export async function authGoogle(req, res) {
+  res.json({
+    success: true,
+    data: req.user
   });
 }
 
@@ -26,7 +101,7 @@ export async function readOne(req, res) {
   if (!user) throw new Error(`User ${userName} not found`);
 
   res.json({
-    message: 'Success',
+    success: true,
     data: user
   });
 }
@@ -35,19 +110,27 @@ export async function readAll(req, res) {
   const data = await User.find();
 
   res.json({
-    message: 'Success',
+    success: true,
     data
   });
 }
 
 export async function update(req, res) {
-  const { userName, ...data } = req.body;
+  const { userName, oldPassword, newPassword, ...data } = req.body;
   const user = await User.findOneAndUpdate({ userName }, { ...data }, { new: true });
   if (!user) throw new Error(`User ${userName} not found`);
+  if (oldPassword !== undefined && newPassword !== undefined) {
+    if (!bcrypt.compareSync(oldPassword, user.password)) throw new Error('Incorrect password');
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+    await user.save();
+  }
+  // eslint-disable-next-line no-unused-vars
+  const { password: _password, ...dataNoPasswords } = user.toJSON();
 
   res.json({
-    message: 'Success',
-    data: user
+    success: true,
+    data: dataNoPasswords
   });
 }
 
@@ -57,7 +140,7 @@ export async function deleteOne(req, res) {
   if (!user) throw new Error(`User ${userName} not found`);
 
   res.json({
-    message: 'Success'
+    success: true
   });
 }
 
@@ -65,7 +148,7 @@ export async function deleteAll(req, res) {
   await User.deleteMany({});
 
   res.json({
-    message: 'Success'
+    success: true
   });
 }
 
@@ -78,6 +161,6 @@ export async function verification(req, res) {
   await user.save();
 
   res.json({
-    message: 'Success'
+    success: true
   });
 }

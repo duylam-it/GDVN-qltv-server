@@ -10,24 +10,29 @@ export function mongoseErrors(err, req, res, next) {
 
   message = message.substr(0, message.length - 2);
 
-  res.status(400).json({
+  res.json({
+    status: err.status || 400,
+    success: false,
     message
   });
 }
 
+// eslint-disable-next-line no-unused-vars
 export function developmentErrors(err, req, res, next) {
-  // err.stack = err.stack || ''
-  const error = {
-    status: err.status || 500,
-    message: err.message
-    // stack: err.stack,
-  };
+  err.stack = err.stack || '';
 
-  res.status(err.status || 500).json(error);
+  res.json({
+    status: err.status || 500,
+    success: false,
+    message: err.message,
+    stack: err.stack
+  });
 }
 
+// eslint-disable-next-line no-unused-vars
 export function productionErrors(err, req, res, next) {
-  res.status(err.status || 500).json({
+  res.json({
+    success: false,
     message: 'Internal Server Error'
   });
 }

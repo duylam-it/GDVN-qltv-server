@@ -14,8 +14,8 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 // Logger
-// import log from 'morgan';
-// app.use(log('dev'));
+import log from 'morgan';
+app.use(log('dev'));
 
 // Setup Cookie Parser
 app.use(cookieParser());
@@ -28,17 +28,17 @@ import routes from './routes/index.js';
 routes(app);
 
 // DB Connect
-import db from './config/db/index.js';
+import db from './config/db.js';
 db.connect();
 
 // Cron
 import cron from 'node-cron';
-import { cleanAccount } from './controller/scheduleController.js';
+import { cleanUser } from './controller/scheduleController.js';
 cron.schedule(
   '0 6 * * *',
   () => {
     console.log('Schedule started');
-    cleanAccount();
+    cleanUser();
     console.log('Schedule stopped');
   },
   { scheduled: true, timezone: 'Asia/Ho_Chi_Minh' }

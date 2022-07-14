@@ -1,5 +1,24 @@
-### Create
-POST http://localhost:8000/user/create
+### Verify
+POST http://localhost:8000/user/verify
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJEdXkgTGFtIiwiaWF0IjoxNjU3NzczOTcxNzcxLCJleHAiOjE2NTc3Nzc1NzE3NzEsInN1YiI6IjYyY2Y3YjVjOGE0ZTFjMDU5ZGNiY2RhMyJ9.Klh2mW-PMvdte5kp3c8lqdu1vjIvKhKjr5S_7rQss2E
+
+### Refresh Token
+POST http://localhost:8000/user/refreshToken
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJEdXkgTGFtIiwiaWF0IjoxNjU3NzcwNzczMDYyLCJleHAiOjE2NTgwMjk5NzMwNjIsInN1YiI6IjYyY2Y3YjVjOGE0ZTFjMDU5ZGNiY2RhMyJ9.xS82boRWHBXSWvPQievHxachTKxD1c57yuA9ji-d6hs
+
+### SignIn
+POST http://localhost:8000/user/signIn
+Content-Type: application/json
+
+{
+    "userName": "admin",
+    "password": "admin"
+}
+
+### SignUp
+POST http://localhost:8000/user/signUp
 Content-Type: application/json
 
 {
@@ -9,7 +28,22 @@ Content-Type: application/json
     "email": "duylam.dev@icloud.com",
     "phone": "0386930585",
     "address": "Trà Vinh",
-    "userName": "testUser"
+    "userName": "admin",
+    "password": "admin",
+    "permissions": "full"
+}
+
+### Auth Google
+POST http://localhost:8000/user/auth/google
+Content-Type: application/json
+
+{
+  "access_token": "ya29.A0AVA9y1vYMDOlKB6nAfpbKZrP6WKgiNUL6xBe1yvmKK8r-sc6Q_B3L43cMfjszEyzgH_yCtH7np17L5gMs_Ud7l5o3gv9Fid6cfImUXSdNTmpWnV865DRiR8bVZYSeHx-_J3stsuZWKEdqULBelih6y8Nq3t4YUNnWUtBVEFTQVRBU0ZRRTY1ZHI4NmJTdjFXNW95TE53OVp1LVNpbmJtUQ0163", 
+  "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjFiZDY4NWY1ZThmYzYyZDc1ODcwNWMxZWIwZThhNzUyNGM0NzU5NzUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI0MDc0MDg3MTgxOTIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI0MDc0MDg3MTgxOTIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTIxODE1MTQ3NDI1NDcxMTY4NjAiLCJoZCI6ImdkdmlldG5hbS5jb20iLCJlbWFpbCI6ImxhbWxkQGdkdmlldG5hbS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IlhQSTRGUk1fVXB3aUJzSjNvUFJWaHciLCJuYW1lIjoiTGFtIEzDqiBEdXkiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUl0YnZta0hDRy1aRmxZNGlhRldxc1BLWUxLOG5iRzhDbkNhQWt1cDJhMmc9czk2LWMiLCJnaXZlbl9uYW1lIjoiTGFtIiwiZmFtaWx5X25hbWUiOiJMw6ogRHV5IiwibG9jYWxlIjoidmkiLCJpYXQiOjE2NTc3ODg2MjcsImV4cCI6MTY1Nzc5MjIyN30.Z9BeNjzcrh9wdi8nkSGA7-qcsx-3BKBpzODM8LjJ-CdBTnZTix7uhrzKbXcS06W3lpfIgncHp444wkvwIwDfb1jxoK6r8jsA9oNT1qhCwOeELhUe1-WD9pngG8IfSoQzM1raWFvTBqES17PiUBUrASsKw2VB1eWS0OsvQp1_k9hldNe3TuW8TD7eJirNpOTA-cE2ifp7mMlyMTyGVMmQo-rG_FvNTxfVpxCVn1vCEVQzGQgy5epYURM0uQPv7bL8DtMTT79mAoJhqCu4-hEuZNdiC84uD3XhnZXpbgXBxn-aj85xQ3pc0xkntAl1bmj2MB-qmzVQED4lUFh0MMwQxg", 
+  "expires_in": 3599, 
+  "token_type": "Bearer", 
+  "scope": "https://www.googleapis.com/auth/userinfo.email openid https://www.googleapis.com/auth/userinfo.profile", 
+  "refresh_token": "1//0483VzF5sI-XsCgYIARAAGAQSNwF-L9IrBp72yYqKpm5Z6PesnTMumHvEpKGckf6j3ln-u5MWGg3ePKw6ZRtRBcp_Qu3J6WwVXxk"
 }
 
 ### Read One
@@ -17,7 +51,7 @@ GET http://localhost:8000/user/readOne
 Content-Type: application/json
 
 {
-    "userName": "testUser"
+    "userName": "admin"
 }
 
 ### Read All
@@ -35,7 +69,8 @@ Content-Type: application/json
     "email": "duylam.dev@icloud.com",
     "phone": "0386930585",
     "address": "Trà Vinh",
-    "userName": "testUser"
+    "userName": "admin",
+    "verified": true
 }
 
 ### Delete One
@@ -43,7 +78,7 @@ POST http://localhost:8000/user/deleteOne
 Content-Type: application/json
 
 {
-    "userName": "testUser"
+    "userName": "admin"
 }
 
 ### Delete All
