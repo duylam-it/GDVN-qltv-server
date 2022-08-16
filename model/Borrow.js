@@ -4,11 +4,11 @@ export default mongoose.model(
   'Borrow',
   new mongoose.Schema(
     {
-      from: { type: 'String', required: 'from is required' },
-      to: { type: 'String', required: 'to is required' },
-      status: { type: 'String', required: 'status is required' },
-      book: { type: 'String', required: 'book is required', ref: 'Book' },
-      user: { type: 'String', required: 'user is required', ref: 'User' }
+      from: { type: 'Date', required: 'from is required' },
+      to: { type: 'Date', required: 'to is required' },
+      description: { type: 'String' },
+      book: { type: mongoose.Schema.Types.ObjectId, required: 'book is required', ref: 'Book' },
+      user: { type: mongoose.Schema.Types.ObjectId, required: 'user is required', ref: 'User' }
     },
     { timestamps: true }
   )

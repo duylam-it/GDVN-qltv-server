@@ -6,7 +6,7 @@ export default mongoose.model(
     {
       code: { type: 'String', required: 'code is required' }, // Mã
       name: { type: 'String', required: 'name is required' }, // Tên
-      image: { type: 'String', required: 'image is required' }, // Hình
+      image: { type: ['String'], required: 'image is required' }, // Hình
       author: { type: 'String', required: 'author is required' }, // Tác giả
       language: { type: 'String', required: 'language is required' }, // Ngôn ngữ
       topic: { type: 'String', required: 'topic is required', ref: 'Topic' }, // Chủ đề
@@ -16,7 +16,8 @@ export default mongoose.model(
       numberOfPages: { type: 'Number', required: 'numberOfPages is required' }, // Số trang
       location: { type: 'String' }, // Vị trí
       borrowCount: { type: 'Number', default: 0 }, // Lượt mượn
-      status: { type: 'String', default: 'Nguyên vẹn' } // Tình trạng
+      status: { type: 'String', default: 'Nguyên vẹn' }, // Tình trạng
+      description: { type: 'String', required: 'description is required' }
     },
     { timestamps: true }
   )

@@ -3,7 +3,7 @@ POST http://localhost:8000/category/create
 Content-Type: application/json
 
 {
-    "name": "category 1",
+    "name": "category 3",
     "description": "Create a new category"
 }
 

@@ -3,7 +3,7 @@ POST http://localhost:8000/topic/create
 Content-Type: application/json
 
 {
-    "name": "topic 1",
+    "name": "topic 2",
     "description": "Create a new topic"
 }
 

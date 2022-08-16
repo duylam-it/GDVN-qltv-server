@@ -19,7 +19,7 @@ export async function create(req, res) {
   }).save();
 
   res.json({
-    message: 'Success',
+    success: true,
     data: book
   });
 }
@@ -30,7 +30,7 @@ export async function readOne(req, res) {
   if (!book) throw new Error(`Book ${code} not found`);
 
   res.json({
-    message: 'Success',
+    success: true,
     data: book
   });
 }
@@ -39,7 +39,7 @@ export async function readAll(req, res) {
   const data = await Book.find();
 
   res.json({
-    message: 'Success',
+    success: true,
     data
   });
 }
@@ -62,7 +62,7 @@ export async function update(req, res) {
   book = await book.save();
 
   res.json({
-    message: 'Success',
+    success: true,
     data: book
   });
 }
@@ -73,7 +73,7 @@ export async function deleteOne(req, res) {
   if (!book) throw new Error(`Book ${code} not found`);
 
   res.json({
-    message: 'Success'
+    success: true
   });
 }
 
@@ -81,6 +81,6 @@ export async function deleteAll(req, res) {
   await Book.deleteMany({});
 
   res.json({
-    message: 'Success'
+    success: true
   });
 }

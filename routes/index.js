@@ -8,6 +8,7 @@ import additionalRoute from './additional.js';
 import bookRoute from './book.js';
 import borrowRoute from './borrow.js';
 import categoryRoute from './category.js';
+import fileRoute from './file.js';
 import optionRoute from './option.js';
 import topicRoute from './topic.js';
 import userRoute from './user.js';
@@ -20,6 +21,7 @@ function routes(app) {
   app.use('/book', bookRoute);
   app.use('/borrow', borrowRoute);
   app.use('/additional', additionalRoute);
+  app.use('/file', fileRoute);
 
   // Setup Error Handlers
   app.use(notFound);

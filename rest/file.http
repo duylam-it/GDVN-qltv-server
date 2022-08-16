@@ -1,0 +1,7 @@
+### Set Option
+POST http://localhost:8000/file/upload/bookImages
+Content-Type: application/json
+
+{
+    
+}

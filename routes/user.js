@@ -6,6 +6,7 @@ import {
   readAll,
   readOne,
   refreshToken,
+  sendOTP,
   signIn,
   signUp,
   update,
@@ -16,6 +17,7 @@ import passport from '../middlewares/passport.js';
 
 const router = express.Router();
 
+router.post('/sendOTP', passport.authenticate('jwt', { session: false }), catchErrors(sendOTP));
 router.post('/signUp', catchErrors(signUp));
 router.post('/signIn', passport.authenticate('local', { session: false }), catchErrors(signIn));
 router.post('/verify', passport.authenticate('jwt', { session: false }), catchErrors(verify));

@@ -9,6 +9,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.join(__dirname, '.env') });
 const app = express();
 
+// Static Files
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Middleware
 app.use(json());
 app.use(urlencoded({ extended: true }));
@@ -21,7 +24,11 @@ app.use(log('dev'));
 app.use(cookieParser());
 
 // Setup Cross Origin
-app.use(cors());
+app.use(
+  cors({
+    origin: '*'
+  })
+);
 
 // Bring in the routes
 import routes from './routes/index.js';

@@ -6,7 +6,7 @@ Content-Type: application/json
     "code": "book 1",
     "topicName": "topic 1",
     "categoryName": "category 1",
-    "name": "Toán 12",
+    "name": "Toán 10",
     "image": "Create a new image",
     "author": "Duy Lam",
     "language": "Tiếng Việt",
@@ -15,7 +15,7 @@ Content-Type: application/json
     "numberOfPages": 100,
     "location": "Create a new location",
     "borrowCount": 0,
-    "status": "Nguyên vẹn"
+    "status": false
 }
 
 ### Read One
@@ -42,10 +42,10 @@ Content-Type: application/json
     "image": "Create a new image",
     "author": "Duy Lam",
     "language": "Tiếng Việt",
-    "publishingCompany": "Create a new publishing company",
+    "publishingCompany": "Trà Vinh",
     "releaseDate": "7/8/2022",
     "numberOfPages": 99,
-    "location": "Create a new location",
+    "location": "Trà Vinh",
     "borrowCount": 4,
     "status": "Nguyên vẹn"
 }
@@ -55,7 +55,7 @@ POST http://localhost:8000/book/deleteOne
 Content-Type: application/json
 
 {
-    "code": "book 1"
+    "code": "book 1đ"
 }
 
 ### Delete All

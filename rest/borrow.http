@@ -3,11 +3,10 @@ POST http://localhost:8000/borrow/create
 Content-Type: application/json
 
 {
-    "bookCode": "book 1",
-    "userName": "testUser",
+    "bookID": "62d4fbec44ec1ea92e28a440",
+    "userID": "62d4fbec44ec1ea92e28a440",
     "from": "7/7/2022",
     "to": "9/7/2022",
-    "status": "Chưa đến hạn"
 }
 
 ### Read One

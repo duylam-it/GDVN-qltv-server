@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../model/User.js';
 import { random } from '../utils/random.js';
+import mailController from './mailController.js';
 
 const encodedToken = (sub, exp, secret) => {
   return jwt.sign(
@@ -15,14 +16,29 @@ const encodedToken = (sub, exp, secret) => {
   );
 };
 
+export async function sendOTP(req, res) {
+  // eslint-disable-next-line no-unused-vars
+  const { _id } = await req.user.toJSON();
+  const user = await User.findById(_id);
+  const otp = random(999999);
+  user.otp = otp;
+  await user.save();
+  await mailController(user.email, 'OTP', `Mã xác thực OTP của bạn là: ${otp}`);
+
+  res.json({
+    success: true,
+    data: otp
+  });
+}
+
 export async function signUp(req, res) {
-  const { userName, password, ...data } = req.body;
-  let user = await User.findOne({ userName });
-  if (user) throw new Error('userName is not available');
+  const { email, password, ...data } = req.body;
+  let user = await User.findOne({ email });
+  if (user) throw new Error('email is not available');
   const salt = await bcrypt.genSalt(10);
   const hashedPass = await bcrypt.hash(password, salt);
   user = await new User({
-    userName,
+    email,
     password: hashedPass,
     otp: random(999999),
     ...data
@@ -96,9 +112,9 @@ export async function authGoogle(req, res) {
 }
 
 export async function readOne(req, res) {
-  const { userName } = req.body;
-  const user = await User.findOne({ userName });
-  if (!user) throw new Error(`User ${userName} not found`);
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) throw new Error(`User ${email} not found`);
 
   res.json({
     success: true,
@@ -116,9 +132,9 @@ export async function readAll(req, res) {
 }
 
 export async function update(req, res) {
-  const { userName, oldPassword, newPassword, ...data } = req.body;
-  const user = await User.findOneAndUpdate({ userName }, { ...data }, { new: true });
-  if (!user) throw new Error(`User ${userName} not found`);
+  const { email, oldPassword, newPassword, ...data } = req.body;
+  const user = await User.findOneAndUpdate({ email }, { ...data }, { new: true });
+  if (!user) throw new Error(`User ${email} not found`);
   if (oldPassword !== undefined && newPassword !== undefined) {
     if (!bcrypt.compareSync(oldPassword, user.password)) throw new Error('Incorrect password');
     const salt = await bcrypt.genSalt(10);
@@ -135,9 +151,9 @@ export async function update(req, res) {
 }
 
 export async function deleteOne(req, res) {
-  const { userName } = req.body;
-  const user = await User.findOneAndDelete({ userName });
-  if (!user) throw new Error(`User ${userName} not found`);
+  const { email } = req.body;
+  const user = await User.findOneAndDelete({ email });
+  if (!user) throw new Error(`User ${email} not found`);
 
   res.json({
     success: true
@@ -153,9 +169,9 @@ export async function deleteAll(req, res) {
 }
 
 export async function verification(req, res) {
-  const { userName, otp } = req.body;
-  const user = await User.findOne({ userName });
-  if (!user) throw new Error(`User ${userName} not found`);
+  const { email, otp } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) throw new Error(`User ${email} not found`);
   if (user.otp !== otp) throw new Error('Wrong otp');
   user.verified = true;
   await user.save();

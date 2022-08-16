@@ -1,7 +1,7 @@
 ### Verify
 POST http://localhost:8000/user/verify
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJEdXkgTGFtIiwiaWF0IjoxNjU3NzczOTcxNzcxLCJleHAiOjE2NTc3Nzc1NzE3NzEsInN1YiI6IjYyY2Y3YjVjOGE0ZTFjMDU5ZGNiY2RhMyJ9.Klh2mW-PMvdte5kp3c8lqdu1vjIvKhKjr5S_7rQss2E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJEdXkgTGFtIiwiaWF0IjoxNjYwNjQxNzU0Njg2LCJleHAiOjE2NjA2NDUzNTQ2ODYsInN1YiI6IjYyZDRmYmVjNDRlYzFlYTkyZTI4YTQ0MCJ9.pB_d58vEagweXQWXAV2raq0nCIhBWTIUJzy9revpXGw
 
 ### Refresh Token
 POST http://localhost:8000/user/refreshToken
@@ -13,7 +13,7 @@ POST http://localhost:8000/user/signIn
 Content-Type: application/json
 
 {
-    "userName": "admin",
+    "email": "dl.night.2k@gmail.com",
     "password": "admin"
 }
 
@@ -25,10 +25,9 @@ Content-Type: application/json
     "fullName": "Lê Duy Lam",
     "birthday": "13/02/2000",
     "gender": "male",
-    "email": "duylam.dev@icloud.com",
+    "email": "dl.night.2k@gmail.com",
     "phone": "0386930585",
     "address": "Trà Vinh",
-    "userName": "admin",
     "password": "admin",
     "permissions": "full"
 }

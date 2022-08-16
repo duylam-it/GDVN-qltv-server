@@ -38,9 +38,9 @@ passport.use(
 
 passport.use(
   'local',
-  new LocalStrategy({ usernameField: 'userName' }, async (userName, password, done) => {
-    const user = await User.findOne({ userName });
-    if (!user) return done(null, false, { message: `User ${userName} not found` });
+  new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
+    const user = await User.findOne({ email });
+    if (!user) return done(null, false, { message: `User ${email} not found` });
     if (bcrypt.compareSync(password, user.password)) {
       return done(null, user);
     } else {
