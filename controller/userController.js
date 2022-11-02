@@ -57,12 +57,12 @@ export async function signIn(req, res) {
   const { _id: id, password, ...data } = await req.user.toJSON();
   const accessToken = encodedToken(
     id,
-    new Date().setHours(new Date().getHours() + 1),
+    new Date().setHours(new Date().getHours() + 1) / 1000,
     process.env.ACCESS_TOKEN_SECRET
   );
   const refreshToken = encodedToken(
     id,
-    new Date().setDate(new Date().getDate() + 3),
+    new Date().setDate(new Date().getDate() + 3) / 1000,
     process.env.REFRESH_TOKEN_SECRET
   );
 
@@ -91,7 +91,7 @@ export async function refreshToken(req, res) {
   const { _id: id, password, ...data } = await req.user.toJSON();
   const accessToken = encodedToken(
     id,
-    new Date().setHours(new Date().getHours() + 1),
+    new Date().setHours(new Date().getHours() + 1) / 1000,
     process.env.ACCESS_TOKEN_SECRET
   );
 

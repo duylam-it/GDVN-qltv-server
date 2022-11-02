@@ -1,7 +1,7 @@
 ### Verify
 POST http://localhost:8000/user/verify
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJEdXkgTGFtIiwiaWF0IjoxNjYwNjQxNzU0Njg2LCJleHAiOjE2NjA2NDUzNTQ2ODYsInN1YiI6IjYyZDRmYmVjNDRlYzFlYTkyZTI4YTQ0MCJ9.pB_d58vEagweXQWXAV2raq0nCIhBWTIUJzy9revpXGw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJEdXkgTGFtIiwiaWF0IjoxNjYyNDU3MjU4OTM1LCJleHAiOjE2NjI0NjA4NTg5MzUsInN1YiI6IjYzMTVhNjNhMTQxNjYzZDFmMjU0NDFiZSJ9.NXaE2p08tOgvd81egPQmFaoZG8iaofUW1Q17JnZypMQ
 
 ### Refresh Token
 POST http://localhost:8000/user/refreshToken
@@ -25,7 +25,7 @@ Content-Type: application/json
     "fullName": "Lê Duy Lam",
     "birthday": "13/02/2000",
     "gender": "male",
-    "email": "dl.night.2k@gmail.com",
+    "email": "lamld@gdvietnam.com",
     "phone": "0386930585",
     "address": "Trà Vinh",
     "password": "admin",
